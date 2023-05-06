@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.os }}-executable
-        path: dist/script*
+        path: dist/*
 
   release:
     needs: build
