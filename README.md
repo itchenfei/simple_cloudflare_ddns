@@ -12,14 +12,14 @@ Cloudflare DDNS
 1. add schedule task
     ```powershell
     schtasks /create /tn "DDNS" /tr "C:\Users\chenfei\ddns\main.exe" /sc minute /mo 1 /ru System
-    ```
-    Parameter explanation:
-
-    /tn: Task name.
-    /tr: Task action to perform (in this case, running a Python script).
-    /sc: Schedule type for the task (e.g., minute, hour, day, etc.).
-    /mo: Frequency of the scheduled task.
-    /ru: User account to use when executing the task. In this case, we are using the System account.
+    ```  
+    Parameter explanation:  
+  
+    /tn: Task name.  
+    /tr: Task action to perform (in this case, running a Python script).  
+    /sc: Schedule type for the task (e.g., minute, hour, day, etc.).  
+    /mo: Frequency of the scheduled task.  
+    /ru: User account to use when executing the task. In this case, we are using the System account.  
 
 2. delete schedule task
     ```powershell
