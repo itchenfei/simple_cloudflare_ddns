@@ -49,6 +49,12 @@ jobs:
       with:
         path: dist/main*
 
+    - name: Move downloaded artifacts
+      run: |
+        mv dist/main*/ubuntu-latest-executable/* dist/
+        mv dist/main*/windows-latest-executable/* dist/
+        rm -r dist/main*/ # 删除空的 main*/ 文件夹
+
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
