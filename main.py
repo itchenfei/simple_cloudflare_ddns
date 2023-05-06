@@ -18,7 +18,7 @@ logger = logging.getLogger('DDNS')
 
 class CloudflareDDNS:
     """
-    Simple cloudflare ddns
+    Simple class to update Cloudflare DDNS records for the given host.
     """
     def __init__(self, config_file='config.ini'):
         # if config file not exist, try to find it in the same folder as the script
