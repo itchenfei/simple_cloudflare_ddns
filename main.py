@@ -18,9 +18,14 @@ class CloudflareDDNS:
     Simple cloudflare ddns
     """
     def __init__(self, config_file='config.ini'):
-        # get current script execution path
-        config_file_full_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), config_file)  # config file path
+        # if config file not exist, try to find it in the same folder as the script
+        real_path = os.path.dirname(sys.executable)
+        config_file_full_path = os.path.join(real_path, config_file)  # config file path
         logger.info("Config file path: %s", config_file_full_path)
+        if os.path.exists(config_file_full_path) is False:
+            logger.info("Config file not found in %s", config_file_full_path)
+            config_file_full_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), config_file)
+            logger.info("Try new config file path: %s", config_file_full_path)
 
         # Read config
         config = configparser.ConfigParser()
