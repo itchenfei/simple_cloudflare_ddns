@@ -16,7 +16,7 @@ Cloudflare DDNS
     Parameter explanation:  
   
     /tn: Task name.  
-    /tr: Task action to perform (in this case, running a Python script).  
+    /tr: Task action to perform (in this case, running a exe).  
     /sc: Schedule type for the task (e.g., minute, hour, day, etc.).  
     /mo: Frequency of the scheduled task.  
     /ru: User account to use when executing the task. In this case, we are using the System account.  
