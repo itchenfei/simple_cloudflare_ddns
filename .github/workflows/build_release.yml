@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ matrix.os }}-executable
-        path: dist/*
+        path: dist/main*
 
   release:
     needs: build
@@ -47,7 +47,7 @@ jobs:
     - name: Download Artifacts
       uses: actions/download-artifact@v2
       with:
-        path: dist/
+        path: dist/main*
 
     - name: Release
       uses: softprops/action-gh-release@v1
