@@ -6,6 +6,7 @@ import socket
 import configparser
 from contextlib import closing
 import time
+import os
 
 # Setup Logging
 logging.basicConfig(level=logging.INFO)
@@ -17,6 +18,12 @@ class CloudflareDDNS:
     Simple cloudflare ddns
     """
     def __init__(self, config_file):
+        # get current script execution path
+        self.script_path = os.path.dirname(os.path.realpath(__file__))
+        logger.info("Script path: %s", self.script_path)
+        config_file = os.path.join(self.script_path, config_file)  # config file path
+
+        # Read config
         config = configparser.ConfigParser()
         config.read(config_file)
         self.host_name = config.get('Cloudflare', 'host_name')
