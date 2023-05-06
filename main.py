@@ -105,7 +105,7 @@ class CloudflareDDNS:
         Get DNS ID and IP from cloudflare API.
         """
         # Build API
-        list_dns_api = f"{self.url}/{self.zone_id}/dns_records?type={self.dns_type}&name={self.host_name}"
+        list_dns_api = f"{self.url}/{self.zone_id}/dns_records?type={self.dns_type}&name={self.host_name}"  # pylint: disable=line-too-long
         logger.info("List DNS API: %s", list_dns_api)
 
         # Build request
