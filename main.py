@@ -17,15 +17,14 @@ class CloudflareDDNS:
     """
     Simple cloudflare ddns
     """
-    def __init__(self, config_file):
+    def __init__(self, config_file='config.ini'):
         # get current script execution path
-        self.script_path = os.path.dirname(os.path.realpath(__file__))
-        logger.info("Script path: %s", self.script_path)
-        config_file = os.path.join(self.script_path, config_file)  # config file path
+        config_file_full_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), config_file)  # config file path
+        logger.info("Config file path: %s", config_file_full_path)
 
         # Read config
         config = configparser.ConfigParser()
-        config.read(config_file)
+        config.read(config_file_full_path)
         self.host_name = config.get('Cloudflare', 'host_name')
         self.dns_type = config.get('Cloudflare', 'dns_type')
         self.zone_id = config.get('Cloudflare', 'zone_id')
@@ -148,6 +147,6 @@ class CloudflareDDNS:
 
 
 if __name__ == "__main__":
-    _config_file = "../../simple_cloudflare_ddns/config.ini"
+    _config_file = "config.ini"
     cf_ddns = CloudflareDDNS(_config_file)
     cf_ddns.run()
