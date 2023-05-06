@@ -13,6 +13,9 @@ logger = logging.getLogger('DDNS')
 
 
 class CloudflareDDNS:
+    """
+    Simple cloudflare ddns
+    """
     def __init__(self, config_file):
         config = configparser.ConfigParser()
         config.read(config_file)
