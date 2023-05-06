@@ -27,17 +27,19 @@ class CloudflareDDNS:
 
     @staticmethod
     def get_latest_ipv6_addr():
-        ipv6_addresses = list()
+        """
+        Get the shortest IPv6 address of current machine.
+        """
+        ipv6_addresses = []
         for family, _, _, _, socket_addr in socket.getaddrinfo(socket.gethostname(), None):
             if family == socket.AF_INET6 and socket_addr[0].startswith('24'):
                 ipv6_addresses.append(socket_addr[0])
         if ipv6_addresses:
             shortest_ipv6 = min(ipv6_addresses, key=len)
-            logger.info(f"Current ip is: {shortest_ipv6}")
+            logger.info("Current ip is: %s", shortest_ipv6)
             return shortest_ipv6
-        else:
-            logging.error("Fail to get IPv6 address, please check your network connection")
-            sys.exit(1)
+        logging.error("Fail to get IPv6 address, please check your network connection")
+        sys.exit(1)
 
     def get_domain_ipv6_address(self, timeout=5):
         logger.info(f"Get IPv6 address for {self.host_name}")
