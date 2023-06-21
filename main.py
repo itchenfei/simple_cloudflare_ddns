@@ -161,7 +161,7 @@ class CloudflareDDNS:
         All in one
         """
         # Logger current time
-        Logger.info(f"Current time: {datetime.datetime.now()}")
+        logger.info(f"Current time: {datetime.datetime.now()}")
 
         # Get current ip and domain ip
         current_ip = self.get_latest_ipv6_addr()
