@@ -45,14 +45,15 @@ class CloudflareDDNS:
         """
         Get the shortest IPv6 address of current machine.
         """
-        ipv6_addresses = []
-        for family, _, _, _, socket_addr in socket.getaddrinfo(socket.gethostname(), None):
-            if family == socket.AF_INET6 and socket_addr[0].startswith('24'):
-                ipv6_addresses.append(socket_addr[0])
-        if ipv6_addresses:
-            shortest_ipv6 = min(ipv6_addresses, key=len)
-            logger.info("Current ip is: %s", shortest_ipv6)
-            return shortest_ipv6
+        with socket.socket(socket.AF_INET6, socket.SOCK_DGRAM) as s:
+            
+            try:
+                s.connect(("240c::6666", 80))  # Google DNS的IPv6地址
+            except socket.error:
+                raise ValueError("无法连接到网络")
+
+            ip_address = s.getsockname()[0]
+            return ip_address
         logging.error("Fail to get IPv6 address, please check your network connection")
         sys.exit(1)
 
