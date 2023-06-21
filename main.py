@@ -10,6 +10,7 @@ import configparser
 from contextlib import closing
 import time
 import os
+import datetime
 
 # Setup Logging
 logging.basicConfig(level=logging.INFO)
@@ -159,6 +160,9 @@ class CloudflareDDNS:
         """
         All in one
         """
+        # Logger current time
+        Logger.info(f"Current time: {datetime.datetime.now()}")
+
         # Get current ip and domain ip
         current_ip = self.get_latest_ipv6_addr()
 

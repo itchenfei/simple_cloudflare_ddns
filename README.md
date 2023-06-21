@@ -33,3 +33,10 @@ Cloudflare DDNS
     ```powershell
     schtasks /run /tn "DDNS"
     ```
+
+    on linux
+
+    crontab
+    ```bash
+    * * * * * cd /home/chenfei/Services/simple_cloudflare_ddns && python3 main.py >> /home/chenfei/Services/simple_cloudflare_ddns/ddns.log 2>&1
+    ```
